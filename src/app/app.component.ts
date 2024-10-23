@@ -26,6 +26,4 @@ export class AppComponent {
   readonly header2Item4 = 'Электрика';
 
   readonly header2Item5 = 'Интерьер и одежда';
-
-
 }
