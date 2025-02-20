@@ -6,7 +6,6 @@ import { Todo } from './components/todos/todo-interface';
 export class TodosApiService {
 
   readonly apiservise = inject(HttpClient);
-  todos: any;
   getTodos() {
     return this.apiservise.get<Todo[]>(
       'https://jsonplaceholder.typicode.com/todos'

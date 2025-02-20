@@ -5,29 +5,38 @@ import { BehaviorSubject } from 'rxjs';
 @Injectable({ providedIn: 'root' })
 export class TodosService {
 
-  private todosSubject = new BehaviorSubject<Todo[]>([]);
-  todos$ = this.todosSubject.asObservable();
+  private todosSubject$ = new BehaviorSubject<Todo[]>([]);
+  todos$ = this.todosSubject$.asObservable();
 
   setTodos(todos: Todo[]) {
-    this.todosSubject.next(todos);
+    this.todosSubject$.next(todos);
   }
 
   editTodo(editedTodo: Todo) {
-    this.todosSubject.next(
-      this.todosSubject.value.map((todo) => {
+    this.todosSubject$.next(
+      this.todosSubject$.value.map((todo) => {
         return todo.id === editedTodo.id ? editedTodo : todo;
       })
     );
   }
 
-  createTodo(todo: Todo) {
-    this.todosSubject.next([...this.todosSubject.value, todo]);
+  createTodos(todo: Todo) {
+    const existingTodo = this.todosSubject$.value.find(
+      (currentElement) => currentElement.title === todo.title
+    );
+
+    if(existingTodo !== undefined) {
+      alert('Такая задача уже зарегистрирована');
+    } else {
+      this.todosSubject$.next([...this.todosSubject$.value, todo]);
+      alert('Задача успешно добавлена')
+  }
   }
 
   deleteTodo(id: number) {
-    this.todosSubject.next(
-      this.todosSubject.value.filter((item) => {
-        return id !== item.id;
+    this.todosSubject$.next(
+      this.todosSubject$.value.filter((Todo) => {
+        return id !== Todo.id;
       })
     );
   }
