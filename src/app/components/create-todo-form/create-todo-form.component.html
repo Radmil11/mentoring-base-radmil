@@ -1,44 +1,22 @@
-<h1 style="padding-left: 450px">CREATE TODO FORM</h1>
-<div style="margin: 0px 30px 30px 30px">
-  <form [formGroup]="formTodo" (ngSubmit)="submitForm()">
-    <P>Текст задачи</P>
-    <input type="text" formControlName="title" />
-    <div
-      *ngIf="
-        formTodo.controls['title'].invalid &&
-        (formTodo.controls['title'].dirty || formTodo.controls['title'].touched)
-      "
-    >
-      <div *ngIf="formTodo.controls['title'].errors" style="color: red">
-        Текст задачи введен не правильно
-      </div>
-    </div>
-    <p>Автор задачи</p>
-    <input type="text" formControlName="userId" />
-    <div
-      *ngIf="
-        formTodo.controls['userId'].invalid &&
-        (formTodo.controls['userId'].dirty ||
-          formTodo.controls['userId'].touched)
-      "
-    >
-      <div *ngIf="formTodo.controls['userId'].errors" style="color: red">
-        Автор введен не правильно
-      </div>
-    </div>
-    <p>Задача решена?</p>
-    <input type="text" formControlName="completed" />
-    <div
-      *ngIf="
-        formTodo.controls['completed'].invalid &&
-        (formTodo.controls['completed'].dirty ||
-          formTodo.controls['completed'].touched)
-      "
-    >
-      <div *ngIf="formTodo.controls['completed'].errors" style="color: red">
-        Ответ некорректен
-      </div>
-    </div>
-    <button class="button" [disabled]="formTodo.invalid">CREATE TODO</button>
+<h1 style="padding-left: 450px; margin: 0px 30px 30px 30px;">CREATE TODO FORM</h1>
+  <form class="formgroup"[formGroup]="formTodo" (ngSubmit)="submitForm()">
+    <mat-form-field>
+      <mat-label>Введите Текст задачи</mat-label>
+      <input matInput formControlName="title">
+      <mat-error>Текст введен не правильно</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Введите Автор задачи</mat-label>
+      <input matInput formControlName="userId">
+      <mat-error>Автор введен не правильно</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Задача решена?</mat-label>
+      <input matInput formControlName="completed">
+      <mat-error>Ответ некорректен</mat-error>
+    </mat-form-field>
+
+    <button mat-fab extended class="button" [disabled]="formTodo.invalid">CREATE TODO</button>
   </form>
-</div>
