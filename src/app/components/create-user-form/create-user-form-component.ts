@@ -15,7 +15,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
   templateUrl: './create-user-form.html',
   styleUrl: './create-user-form.scss',
   standalone: true,
-  imports: [ReactiveFormsModule, NgIf, MatButtonModule, MatInputModule, MatFormFieldModule],
+  imports: [ReactiveFormsModule, MatButtonModule, MatInputModule, MatFormFieldModule],
 })
 export class CreateUserFormComponent {
   @Output()
