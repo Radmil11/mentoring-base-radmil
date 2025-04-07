@@ -47,10 +47,10 @@ export class UserCardComponent {
       data: { user: this.user },
     });
 
-    dialogRef.afterClosed().subscribe((Editresult) => {
+    dialogRef.afterClosed().subscribe((editResult: IUser | undefined) => {
 
-      if (Editresult) {
-        this.editUser.emit(Editresult);
+      if (editResult) {
+        this.editUser.emit(editResult);
 
         this.snackBar.open('Пользователь обновлён', 'ОК', {
           duration: 3000,
@@ -69,7 +69,7 @@ export class UserCardComponent {
       data: { user: this.user },
     });
 
-    dialogRef.afterClosed().subscribe((result) => {
+    dialogRef.afterClosed().subscribe((result: IUser | undefined) => {
       if (result) {
         this.deleteUser.emit(this.user.id);
         this.snackBar.open('Пользователь удален', 'ОК', {
