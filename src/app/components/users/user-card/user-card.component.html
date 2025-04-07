@@ -1,7 +1,8 @@
 <div class="userslist">
-  <p>{{user.name }}</p>
-  <p>{{user.email }}</p>
-  <p>{{user.website }}</p>
-  <p>{{user.company.name }}</p>
-  <button (click)="onDeleteUser(user.id)" class="buton">Удалить юзера</button>
+  <p>{{ user.name }}</p>
+  <p>{{ user.email }}</p>
+  <p>{{ user.website }}</p>
+  <p>{{ user.company.name }}</p>
+  <button  (click)="openDeleteDialog()" class="buton">Удалить юзера</button>
+  <button  (click)="openDialog()" class="buton">Редактировать юзера</button>
 </div>

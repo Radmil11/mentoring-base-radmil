@@ -1,5 +1,5 @@
 import { NgFor, NgIf } from '@angular/common';
-import { Component, EventEmitter, NgModule, Output } from '@angular/core';
+import { Component, EventEmitter, inject, NgModule, Output } from '@angular/core';
 import {
   AbstractControl,
   FormControl,
@@ -13,6 +13,7 @@ import { Title } from '@angular/platform-browser';
 import { MatButtonModule } from '@angular/material/button';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
+
 
 export function completedValidator(): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
@@ -35,11 +36,14 @@ export class CreateTodoFormComponent {
   @Output()
   createTodo = new EventEmitter();
 
+
   public formTodo = new FormGroup({
     title: new FormControl('', [Validators.required, Validators.minLength(3)]),
     userId: new FormControl('', [Validators.required, Validators.minLength(2)]),
     completed: new FormControl('', [Validators.required, completedValidator()]),
   });
+
+
 
   private getCompletedValue(): boolean {
     const value = this.formTodo.get('completed')?.value!.trim().toLowerCase();
