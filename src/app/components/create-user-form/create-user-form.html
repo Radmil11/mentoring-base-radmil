@@ -1,5 +1,12 @@
 <h1 class="userhead">CREATE USER FORM</h1>
   <form class="formgroup" [formGroup]="form" (ngSubmit)="submitForm()">
+
+  <mat-form-field>
+      <mat-label>phone:</mat-label>
+      <input matInput formControlName="phone">
+      <mat-error>телефон введен неправильно</mat-error>
+  </mat-form-field>
+
     <mat-form-field>
       <mat-label>NAME:</mat-label>
       <input matInput formControlName="name">

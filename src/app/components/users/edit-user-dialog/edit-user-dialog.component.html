@@ -1,5 +1,12 @@
 <h1 mat-dialog-title>it is editing: {{ data.user.name }}</h1>
 <form class="formgroup" [formGroup]="form">
+  
+  <mat-form-field>
+    <mat-label>phone:</mat-label>
+    <input matInput formControlName="phone">
+    <mat-error>телефон введен неправильно</mat-error>
+</mat-form-field>
+
     <mat-form-field>
       <mat-label>NAME:</mat-label>
       <input matInput formControlName="name">

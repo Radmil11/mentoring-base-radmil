@@ -22,6 +22,7 @@ export class CreateUserFormComponent {
   createUser = new EventEmitter();
 
   public form = new FormGroup({
+    phone: new FormControl('', [Validators.required]),
     name: new FormControl('', [Validators.required, Validators.minLength(2)]),
     email: new FormControl('', [Validators.required, Validators.email]),
     website: new FormControl('', [

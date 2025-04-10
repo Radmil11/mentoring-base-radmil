@@ -21,12 +21,15 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { EditUserDialogComponent } from '../edit-user-dialog/edit-user-dialog.component';
 import { DeleteUserDialogComponent } from '../delete-user-dialog/delete-user-dialog.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { UpperCasePipe } from '@angular/common';
+import { СustomUpperCasePipe } from "../../pipes/upper-case.pipe";
+import { RemoveDashesPipe } from '../../pipes/remove-dashes.pipe';
 
 @Component({
   selector: 'app-user-card',
   templateUrl: './user-card.component.html',
   styleUrl: './user-card.component.scss',
-  imports: [MatDialogModule],
+  imports: [MatDialogModule, СustomUpperCasePipe, RemoveDashesPipe],
   standalone: true,
 })
 export class UserCardComponent {

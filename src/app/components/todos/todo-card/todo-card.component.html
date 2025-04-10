@@ -1,7 +1,7 @@
 <div class="todostyle">
   <p>ТЕКСТ ЗАДАЧИ:</p>
   <div>
-    {{ todo.title }}
+    {{ todo.title | truncate:20 }}
   </div>
   <p>АВТОР ЗАДАЧИ</p>
   <div>{{ todo.userId }}</div>

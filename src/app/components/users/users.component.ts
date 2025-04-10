@@ -39,6 +39,7 @@ export class UsersComponent {
 
   public createUser(formData: ICreateUser) {
     this.usersService.createUser({
+      phone: formData.phone,
       id: new Date().getTime(),
       name: formData.name,
       email: formData.email,
@@ -46,7 +47,7 @@ export class UsersComponent {
       company: {
         name: formData.companyName,
       },
-      companyName: '',
+      companyName: formData.companyName,
     });
   }
 }

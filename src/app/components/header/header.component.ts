@@ -1,4 +1,4 @@
-import { NgFor, NgIf } from '@angular/common';
+import { DatePipe, NgFor, NgIf } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
@@ -19,7 +19,7 @@ const newPages: number[] = [5, 4, 3, 2, 1];
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [ NgFor, NgIf, RouterLink],
+  imports: [ NgFor, NgIf, RouterLink, DatePipe],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })
@@ -53,6 +53,8 @@ export class HeaderComponent {
   menuItems: string[] = upperCaseMenuItems;
 
   isUpperCase = true;
+
+  currentDate: Date = new Date();
 
   changeMenuText() {
     this.menuItems = upperCaseMenuItems.map((item) =>
