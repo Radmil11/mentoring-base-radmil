@@ -24,12 +24,14 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { UpperCasePipe } from '@angular/common';
 import { СustomUpperCasePipe } from "../../pipes/upper-case.pipe";
 import { RemoveDashesPipe } from '../../pipes/remove-dashes.pipe';
+import { RedDirective } from '../../directives/red.directive';
+import { blackDirective } from '../../directives/black.directive';
 
 @Component({
   selector: 'app-user-card',
   templateUrl: './user-card.component.html',
   styleUrl: './user-card.component.scss',
-  imports: [MatDialogModule, СustomUpperCasePipe, RemoveDashesPipe],
+  imports: [MatDialogModule, СustomUpperCasePipe, RemoveDashesPipe, RedDirective, blackDirective],
   standalone: true,
 })
 export class UserCardComponent {

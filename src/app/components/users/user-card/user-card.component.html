@@ -1,9 +1,13 @@
 <div class="userslist">
-  <p>{{ user.phone | removeDashes }}</p>
-  <p>{{ user.name | customUpperCase }}</p>
-  <p>{{ user.email | customUpperCase  }}</p>
-  <p>{{ user.website | customUpperCase  }}</p>
-  <p>{{ user.company.name | customUpperCase  }}</p>
-  <button  (click)="openDeleteDialog()" class="buton">Удалить юзера</button>
-  <button  (click)="openDialog()" class="buton">Редактировать юзера</button>
+  <p red>{{ user.phone | removeDashes }}</p>
+  <p red>{{ user.name | customUpperCase }}</p>
+  <p red>{{ user.email | customUpperCase }}</p>
+  <p red>{{ user.website | customUpperCase }}</p>
+  <p red>{{ user.company.name | customUpperCase }}</p>
+  <button black red (click)="openDeleteDialog()" class="buton">
+    Удалить юзера
+  </button>
+  <button black red (click)="openDialog()" class="buton">
+    Редактировать юзера
+  </button>
 </div>

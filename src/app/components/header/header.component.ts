@@ -1,6 +1,7 @@
 import { DatePipe, NgFor, NgIf } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { OrangeDirective } from '../directives/orange.directive';
 
 const menuItems: string[] = [
   'Каталог',
@@ -19,7 +20,7 @@ const newPages: number[] = [5, 4, 3, 2, 1];
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [ NgFor, NgIf, RouterLink, DatePipe],
+  imports: [ NgFor, NgIf, RouterLink, DatePipe, OrangeDirective],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })
