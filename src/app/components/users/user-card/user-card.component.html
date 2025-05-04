@@ -1,13 +1,9 @@
-<div class="userslist">
+<div boxshadow class="userslist">
   <p red>{{ user.phone | removeDashes }}</p>
   <p red>{{ user.name | customUpperCase }}</p>
   <p red>{{ user.email | customUpperCase }}</p>
   <p red>{{ user.website | customUpperCase }}</p>
   <p red>{{ user.company.name | customUpperCase }}</p>
-  <button black red (click)="openDeleteDialog()" class="buton">
-    Удалить юзера
-  </button>
-  <button black red (click)="openDialog()" class="buton">
-    Редактировать юзера
-  </button>
+  <button black red (click)="openDeleteDialog()" class="buton">Удалить юзера</button>
+  <button black red (click)="openDialog()" class="buton">Редактировать юзера</button>
 </div>

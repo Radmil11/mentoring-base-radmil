@@ -5,7 +5,7 @@ import { Directive, HostBinding, HostListener } from '@angular/core';
   standalone: true,
 })
 export class OrangeDirective {
-  color = 'orange';
+  color = 'white';
 
   @HostBinding('style.borderColor')
   get borderColor() {

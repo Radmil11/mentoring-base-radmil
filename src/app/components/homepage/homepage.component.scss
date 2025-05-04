@@ -184,7 +184,7 @@
   
   .pros-line {
     display: flex;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
     max-width: 1320px;
     margin: 0 auto;
     align-items: center;
@@ -248,4 +248,5 @@
     gap: 0px;
     opacity: 0px;
   }
+  
   

@@ -1,9 +1,12 @@
-import { Injectable } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 import { IUser } from './components/users/user-interface';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class UsersService {
+  getUser() {
+    throw new Error('Method not implemented.');
+  }
   private usersSubject$ = new BehaviorSubject<IUser[]>([]);
   users$ = this.usersSubject$.asObservable();
 
