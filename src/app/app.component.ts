@@ -5,7 +5,6 @@ import { HomepageComponent } from './components/homepage/homepage.component';
 import { HeaderComponent } from './components/header/header.component';
 import { UsersComponent } from './components/users/users.component';
 import { TodosComponent } from './components/todos/todos.component';
-import { UsersService } from './users.service';
 import { Router, RouterModule } from '@angular/router';
 
 

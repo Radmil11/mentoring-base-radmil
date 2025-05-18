@@ -1,9 +1,9 @@
 <app-create-user-form (createUser)="createUser($event)"></app-create-user-form>
 <div class="positionboxes">
-  <div *ngFor="let user of usersService.users$ | async" class="userslist">
+  <div *ngFor="let user of users$ | async" class="userslist">
     <app-user-card
       [user]="user" (deleteUser)="deleteUser($event)"
       (editUser)="editUser($event)"
     ></app-user-card>
   </div>
-</div>
+</div> 

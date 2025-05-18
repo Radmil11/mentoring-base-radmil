@@ -3,9 +3,7 @@ import {
   EventEmitter,
   inject,
   Input,
-  input,
   Output,
-  output,
 } from '@angular/core';
 import { IUser } from '../user-interface';
 import {
@@ -49,7 +47,7 @@ export class UserCardComponent {
 
   public openDialog(): void {
     const dialogRef = this.dialog.open(EditUserDialogComponent, {
-      data: { user: this.user },
+      data: { user: { ...this.user } },
     });
 
     dialogRef.afterClosed().subscribe((Editresult) => {

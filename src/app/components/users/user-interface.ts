@@ -31,3 +31,15 @@ export interface IUser {
     website: string;
     companyName: string;
   }
+
+  export interface User {
+    phone: string;
+    id: number;
+    name: string;
+    email: string;
+    website: string;
+    company: {
+      name: string;
+    }
+  }
+

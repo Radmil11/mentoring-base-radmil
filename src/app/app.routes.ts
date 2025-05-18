@@ -17,8 +17,5 @@ export const routes: Routes = [
     component: TodosComponent,
   },
 
-  {path: 'admin',
-    component: AdminComponent,
-    canActivate: [authGuard],
-  }
+  { path: 'admin', component: AdminComponent, canActivate: [authGuard] },
 ];

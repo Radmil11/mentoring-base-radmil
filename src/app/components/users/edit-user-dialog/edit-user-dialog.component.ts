@@ -14,7 +14,7 @@ import {MatTooltipModule} from '@angular/material/tooltip';
   selector: 'app-edit-user-dialog',
   standalone: true,
   imports:[ReactiveFormsModule, MatButtonModule, MatInputModule, MatFormFieldModule, MatDialogClose, MatTooltipModule],
-  templateUrl: './edit-user-dialog.component.html',
+  templateUrl:'./edit-user-dialog.component.html',
   styleUrl: './edit-user-dialog.component.scss'
 })
 
@@ -34,15 +34,19 @@ export class  EditUserDialogComponent {
       Validators.required,
       Validators.minLength(3),
     ]),
-    companyName: new FormControl(this.data.user.company.name, [
+    companyName: new FormControl(this.data.user.company?.name || ' ' , [
       Validators.required,
       Validators.minLength(2),
     ]),
   });
   get userWithUpdatedFields() {
     return {
+      ...this.data.user,
       ...this.form.value,
-      id: this.data.user.id,
+    company: {
+      ...this.data.user.company,
+      name: this.form.value.companyName || '',
+    },
     };
   }
   onSave() {

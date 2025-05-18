@@ -23,13 +23,21 @@ const newPages: number[] = [5, 4, 3, 2, 1];
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [NgFor, NgIf, RouterLink, DatePipe, OrangeDirective, AsyncPipe, NgIf],
+  imports: [
+    NgFor,
+    NgIf,
+    RouterLink,
+    DatePipe,
+    OrangeDirective,
+    AsyncPipe,
+    NgIf,
+  ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
 })
 export class HeaderComponent {
   private readonly dialog = inject(MatDialog);
-  public readonly userService = inject (UserService)
+  public readonly userService = inject(UserService);
 
   isShowCatalog = false;
 
@@ -80,18 +88,15 @@ export class HeaderComponent {
     });
 
     dialogRef.afterClosed().subscribe((result: string) => {
-      if (result === "admin") {
-        this.userService.loginAsAdmin()
-      }else if (result === "user") {
-        this.userService.loginAsUser()
-      } else return undefined;
+      result === 'admin'
+        ? this.userService.loginAsAdmin()
+        : this.userService.loginAsUser();
     });
   }
 
   public logout() {
     if (confirm('вы точно хотите выйти ?')) {
-  return this.userService.logout();
+      return this.userService.logout();
+    } else return false;
   }
-  else return false;
-}
 }
