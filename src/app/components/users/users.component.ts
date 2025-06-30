@@ -61,10 +61,10 @@ export class UsersComponent {
         name: formData.name,
         email: formData.email,
         website: formData.website,
+        companyName: formData.companyName,
         company: {
           name: formData.companyName,
         },
-        companyName: ''
       },
   }));
   }
