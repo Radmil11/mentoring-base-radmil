@@ -5,9 +5,14 @@ import { TodosApiService } from '../../todos-api.service';
 import { TodoCardComponent } from './todo-card/todo-card.component';
 import { Todo } from './todo-interface';
 import { CreateTodoFormComponent } from '../create-todo-form/create-todo-form.component';
-import { selectTodos } from './store/todos.selectors';
+import {
+  selectError,
+  selectLoading,
+  selectTodos,
+} from './store/todos.selectors';
 import { TodosActions } from './store/todos.actions';
 import { Store } from '@ngrx/store';
+import { map } from 'rxjs';
 
 @Component({
   selector: 'app-todos',
@@ -21,11 +26,20 @@ export class TodosComponent {
   readonly todosApiService = inject(TodosApiService);
   private readonly store = inject(Store);
   public readonly todos$ = this.store.select(selectTodos);
+  public readonly loading$ = this.store.select(selectLoading);
+  public readonly error$ = this.store.select(selectError);
+  public readonly errorMsg$ = this.error$.pipe(
+    map((error) => {
+      if (!error) return null;
+      if (typeof error === 'object' && 'message' in error) {
+        return (error as any).message;
+      }
+      return JSON.stringify(error);
+    })
+  );
 
   constructor() {
-    this.todosApiService.getTodos().subscribe((response: Todo[]) => {
-      this.store.dispatch(TodosActions.set({ todos: response }));
-    });
+    this.store.dispatch(TodosActions.load());
   }
 
   deleteTodo(id: number) {

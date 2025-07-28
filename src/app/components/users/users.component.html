@@ -1,3 +1,10 @@
+<p>LOADING = {{ loading$ | async }}</p>
+<div *ngIf="loading$ | async" class="loading">
+  Загружаю пользователей...
+</div>
+<div *ngIf="error$ | async as error" class="error-message">
+  Ошибка загрузки: {{ error }}
+</div>
 <app-create-user-form (createUser)="createUser($event)"></app-create-user-form>
 <div class="positionboxes">
   <div *ngFor="let user of users$ | async" class="userslist">

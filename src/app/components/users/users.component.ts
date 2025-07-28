@@ -1,18 +1,22 @@
-import { AsyncPipe, NgFor } from '@angular/common';
+import { AsyncPipe, NgFor, NgIf } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { UsersApiService } from '../../users-api.service';
 import { UserCardComponent } from './user-card/user-card.component';
 import { ICreateUser, IUser } from './user-interface';
 import { CreateUserFormComponent } from '../create-user-form/create-user-form-component';
-import { select, Store } from '@ngrx/store';
+import { Store } from '@ngrx/store';
 import { UsersActions } from './store/users.actions';
-import { selectUsers } from './store/users.selectors';
-
+import {
+  selectError,
+  selectLoading,
+  selectUsers,
+} from './store/users.selectors';
+import { map } from 'rxjs';
 
 @Component({
   selector: 'app-users',
   standalone: true,
-  imports: [NgFor, UserCardComponent, AsyncPipe, CreateUserFormComponent],
+  imports: [NgFor, UserCardComponent, AsyncPipe, CreateUserFormComponent, NgIf],
   templateUrl: './users.component.html',
   styleUrl: './users.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -20,26 +24,35 @@ import { selectUsers } from './store/users.selectors';
 export class UsersComponent {
   readonly usersApiService = inject(UsersApiService);
   private readonly store = inject(Store);
-  public readonly users$ = this.store.select(selectUsers)
+  public readonly users$ = this.store.select(selectUsers);
+  public readonly loading$ = this.store.select(selectLoading);
+  public readonly error$ = this.store.select(selectError);
+  public readonly errorMsg$ = this.error$.pipe(
+    map((error) => {
+      if (!error) return null;
+      if (typeof error === 'object' && 'message' in error) {
+        return (error as any).message;
+      }
+      return JSON.stringify(error);
+    })
+  );
 
   constructor() {
-    this.usersApiService.getUsers().subscribe((response: IUser[]) => {
-      this.store.dispatch(UsersActions.set({users: response}));
-    });
+    this.store.dispatch(UsersActions.load());
   }
 
   public deleteUser(id: number) {
-    this.store.dispatch(UsersActions.delete ({ id }));
-
+    this.store.dispatch(UsersActions.delete({ id }));
   }
 
-  editUser(user: IUser) {({
+  public editUser(user: IUser) {
+    ({
       ...user,
       company: {
-        name:user.companyName,
+        name: user.companyName,
       },
     });
-    this.store.dispatch(UsersActions.edit({user}));
+    this.store.dispatch(UsersActions.edit({ user }));
   }
 
   public createUser(formData: ICreateUser) {
@@ -54,18 +67,20 @@ export class UsersComponent {
       },
       companyName: formData.companyName,
     });
-    this.store.dispatch(UsersActions.create({
-      user: {
-        phone: formData.phone,
-        id: new Date().getTime(),
-        name: formData.name,
-        email: formData.email,
-        website: formData.website,
-        companyName: formData.companyName,
-        company: {
-          name: formData.companyName,
+    this.store.dispatch(
+      UsersActions.create({
+        user: {
+          phone: formData.phone,
+          id: new Date().getTime(),
+          name: formData.name,
+          email: formData.email,
+          website: formData.website,
+          companyName: formData.companyName,
+          company: {
+            name: formData.companyName,
+          },
         },
-      },
-  }));
+      })
+    );
   }
 }
